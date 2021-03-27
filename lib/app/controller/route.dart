@@ -1,7 +1,5 @@
 import 'package:data_bar_v2/app/models/screen_arguments.dart';
-import 'package:data_bar_v2/app/models/v2_menu.dart';
 import 'package:data_bar_v2/views/aggregate_orders/aggregate_orders_view.dart';
-import 'package:data_bar_v2/views/menus/form_screen.dart';
 import 'package:data_bar_v2/views/menus/menus_view.dart';
 import 'package:data_bar_v2/views/week_orders/week_orders_view.dart';
 import 'package:data_bar_v2/views/widget/transition_helper.dart';
@@ -21,7 +19,9 @@ class RouteGenerator {
       case '/aggregateorders':
         final ScreenArguments _args = args;
         return FadeRoute(
-          page: AggregateOrdersView(selectedIndex: _args.selectedIndex),
+          page: AggregateOrdersView(
+            selectedIndex: _args.selectedIndex,
+          ),
         );
       case '/weekorders':
         final ScreenArguments _args = args;

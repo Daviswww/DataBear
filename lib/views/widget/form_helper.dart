@@ -285,6 +285,7 @@ class FormHelper {
           height: 30,
           width: 200,
           decoration: BoxDecoration(
+            border: Border.all(color: brownDarkColor, width: 2),
             color: pinkDarkColor,
             borderRadius: BorderRadius.circular(15),
           ),

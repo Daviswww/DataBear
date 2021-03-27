@@ -4,6 +4,7 @@ import 'package:data_bar_v2/shared/colors.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
 import 'package:data_bar_v2/views/widget/loadding_helper.dart';
+import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,43 +56,130 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
           children: <Widget>[
             ListView.builder(
               shrinkWrap: true,
-              itemCount: snapshot.data.payload.weekOrders.length,
+              itemCount: snapshot.data.payload.aggregateOrders.length,
               itemBuilder: (context, index) {
-                var _order = snapshot.data.payload.weekOrders[0];
-                return Container();
+                var _order = snapshot.data.payload.aggregateOrders[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _orderTitle(index, _order),
+                    _orderInfo(_order),
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                  ],
+                );
               },
             ),
             Column(
               children: <Widget>[
                 Spacer(),
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Text(
-                        "Total Amount",
-                        style: GoogleFonts.notoSerif(
-                          textStyle: itemSubTitleText,
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        "\$${snapshot.data.payload.totalPrice}",
-                        style: GoogleFonts.notoSerif(
-                          textStyle: itemSubTitleText,
-                        ),
-                      ),
-                    ],
-                  ),
+                _totalAmount(snapshot),
+                NavigationBarHelper.items(
+                  context,
+                  selectedIndex,
                 ),
-                NavigationBarHelper.items(context, selectedIndex),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Padding _orderInfo(AggregateOrder _order) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+      child: Row(
+        children: [
+          Text(
+            "${_order.size == "medium" ? "中杯" : "大杯"}",
+            style: ordersText,
+          ),
+          Text(
+            " / ${_order.iceTag}",
+            style: ordersText,
+          ),
+          Text(
+            " / ${_order.sugarTag}",
+            style: ordersText,
+          ),
+          Spacer(),
+          Text(
+            "\$ ${_order.subTotalPrice} TW",
+            style: GoogleFonts.notoSerif(textStyle: ordersText),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding _orderTitle(int index, AggregateOrder _order) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: [
+          Text(
+            "${index + 1}. ${_order.item}",
+            style: itemSubTitleText,
+          ),
+          Spacer(),
+          SizedBox(
+            width: 40,
+            height: 30,
+            child: IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.remove_circle_outline_rounded),
+              onPressed: () {},
+            ),
+          ),
+          Text(
+            "${_order.number}",
+            style: GoogleFonts.notoSerif(
+              textStyle: itemTitleText,
+            ),
+          ),
+          SizedBox(
+            width: 40,
+            height: 30,
+            child: IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.add_circle_outline_rounded),
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _totalAmount(AsyncSnapshot<AggregateOrders> snapshot) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      color: Colors.white,
+      child: Row(
+        children: [
+          Text(
+            "Total Amount",
+            style: GoogleFonts.notoSerif(
+              textStyle: itemSubTitleText,
+            ),
+          ),
+          Spacer(),
+          Text(
+            "\$ ${snapshot.data.payload.totalPrice} / ${snapshot.data.payload.weekOrders.length} 杯",
+            style: GoogleFonts.notoSerif(
+              textStyle: itemSubTitleText,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -111,11 +199,20 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
             icon: Icon(
               Icons.sync_rounded,
               color: brownDarkColor,
             ),
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _aggregateOrders = ApiManager().getAggregateOrders();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBarHelper.aggregateOrders(),
+                );
+              });
+            },
           ),
         ),
       ],

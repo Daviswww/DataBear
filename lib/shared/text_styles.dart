@@ -14,6 +14,12 @@ const itemTitleText = TextStyle(
   color: brownDarkColor,
 );
 
+const ordersText = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  color: brownDarkColor,
+);
+
 const itemSubTitleText = TextStyle(
   fontSize: 17,
   fontWeight: FontWeight.bold,
@@ -42,4 +48,10 @@ const cupSizeText = TextStyle(
   fontSize: 30,
   fontWeight: FontWeight.w900,
   color: brownDarkColor,
+);
+
+const snackBarText = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+  color: Colors.white,
 );
