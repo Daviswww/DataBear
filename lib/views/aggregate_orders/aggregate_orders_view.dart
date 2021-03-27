@@ -3,14 +3,13 @@ import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
-import 'package:data_bar_v2/views/widget/loadding_helper.dart';
+import 'package:data_bar_v2/views/widget/progress_helper.dart';
 import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AggregateOrdersView extends StatefulWidget {
   final int selectedIndex;
-
   AggregateOrdersView({
     Key key,
     @required this.selectedIndex,
@@ -23,7 +22,6 @@ class AggregateOrdersView extends StatefulWidget {
 class _AggregateOrdersViewState extends State<AggregateOrdersView> {
   int selectedIndex = 1;
   Future<AggregateOrders> _aggregateOrders;
-  var a;
   @override
   void initState() {
     _aggregateOrders = ApiManager().getAggregateOrders();

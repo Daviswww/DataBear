@@ -1,5 +1,8 @@
 import 'package:data_bar_v2/app/models/screen_arguments.dart';
+import 'package:data_bar_v2/app/models/v2_aggregate_orders.dart';
+import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/views/aggregate_orders/aggregate_orders_view.dart';
+import 'package:data_bar_v2/views/login/login_view.dart';
 import 'package:data_bar_v2/views/menus/menus_view.dart';
 import 'package:data_bar_v2/views/week_orders/week_orders_view.dart';
 import 'package:data_bar_v2/views/widget/transition_helper.dart';
@@ -9,8 +12,12 @@ class RouteGenerator {
   static PageRouteBuilder<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
-
+    ApiManager().getAggregateOrders();
     switch (settings.name) {
+      case '/':
+        return FadeRoute(
+          page: LoginView(),
+        );
       case '/menus':
         final ScreenArguments _args = args;
         return FadeRoute(

@@ -3,7 +3,9 @@ import 'package:data_bar_v2/app/models/v2_menu.dart';
 import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
+import 'package:data_bar_v2/shared/value.dart';
 import 'package:data_bar_v2/views/widget/form_helper.dart';
+import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 
 class FormView extends StatefulWidget {
@@ -32,7 +34,7 @@ class _FormViewState extends State<FormView> {
     _item = widget.item;
     _menuIndex = widget.menuIndex;
     order = Order(
-      orderBy: "Bob",
+      orderBy: orderBy,
       itemId: _item.itemId,
       iceId: 1,
       sugarId: 1,
@@ -76,11 +78,6 @@ class _FormViewState extends State<FormView> {
                   order.iceId,
                   () {
                     setState(() {
-                      order.iceId = 0;
-                    });
-                  },
-                  () {
-                    setState(() {
                       order.iceId = 1;
                     });
                   },
@@ -94,15 +91,15 @@ class _FormViewState extends State<FormView> {
                       order.iceId = 3;
                     });
                   },
+                  () {
+                    setState(() {
+                      order.iceId = 4;
+                    });
+                  },
                 ),
                 _divider(),
                 FormHelper.sugarButtonUI(
                   order.sugarId,
-                  () {
-                    setState(() {
-                      order.sugarId = 0;
-                    });
-                  },
                   () {
                     setState(() {
                       order.sugarId = 1;
@@ -118,12 +115,24 @@ class _FormViewState extends State<FormView> {
                       order.sugarId = 3;
                     });
                   },
+                  () {
+                    setState(() {
+                      order.sugarId = 4;
+                    });
+                  },
                 ),
                 _divider(),
                 Spacer(),
                 FormHelper.submitButtonUI(
                   () {
-                    ApiManager().postOrder(order);
+                    Navigator.pop(context);
+                    ApiManager().postOrder(order).then(
+                          (value) => {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBarHelper.order(value.statusCode),
+                            )
+                          },
+                        );
                   },
                 ),
               ],
@@ -149,6 +158,8 @@ class _FormViewState extends State<FormView> {
       automaticallyImplyLeading: true,
       backgroundColor: beigeColor,
       leading: IconButton(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
         icon: Icon(
           Icons.arrow_back_ios_rounded,
           color: brownDarkColor,

@@ -12,9 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: MenusView(
-        selectedIndex: 1,
-      ),
+      initialRoute: '/',
+      // home: MenusView(
+      //   selectedIndex: 1,
+      // ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

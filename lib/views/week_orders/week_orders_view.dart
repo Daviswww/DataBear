@@ -1,6 +1,14 @@
+import 'package:data_bar_v2/app/models/v2_aggregate_orders.dart';
+import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
+import 'package:data_bar_v2/shared/images.dart';
+import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
+import 'package:data_bar_v2/views/widget/progress_helper.dart';
+import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WeekOrdersView extends StatefulWidget {
   final int selectedIndex;
@@ -16,21 +24,192 @@ class WeekOrdersView extends StatefulWidget {
 
 class _WeekOrdersViewState extends State<WeekOrdersView> {
   int selectedIndex = 1;
+  Future<AggregateOrders> _aggregateOrders;
+  static List<String> weekDay = [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ];
   @override
   void initState() {
+    _aggregateOrders = ApiManager().getAggregateOrders();
     selectedIndex = widget.selectedIndex;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<AggregateOrders>(
+      future: _aggregateOrders,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return buildMainAggregateOrders(snapshot);
+        } else {
+          return ProgressHelper.lodding();
+        }
+      },
+    );
+  }
+
+  Scaffold buildMainAggregateOrders(AsyncSnapshot<AggregateOrders> snapshot) {
     return Scaffold(
       backgroundColor: beigeColor,
-      body: Stack(
+      appBar: _appbar(),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: <Widget>[
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.data.payload.weekOrders.length,
+              itemBuilder: (context, index) {
+                var _order = snapshot.data.payload.weekOrders[index];
+                return Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      _orderDate(_order),
+                      _orderInfo(_order),
+                      Spacer(),
+                      Text(
+                        "\$${_order.price}",
+                        textAlign: TextAlign.center,
+                        style: itemIceTitleText,
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            Column(
+              children: <Widget>[
+                Spacer(),
+                NavigationBarHelper.items(
+                  context,
+                  selectedIndex,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container _orderInfo(WeekOrder _order) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          NavigationBarHelper.items(context, selectedIndex),
+          Text(
+            "${_order.orderBy}",
+            style: ordersText,
+          ),
+          Row(
+            children: [
+              Text(
+                "${_order.size == "medium" ? "中杯" : "大杯"}",
+                style: orderText,
+              ),
+              Text(
+                " / ${_order.iceTag}",
+                style: orderText,
+              ),
+              Text(
+                " / ${_order.sugarTag}",
+                style: orderText,
+              ),
+            ],
+          ),
         ],
       ),
+    );
+  }
+
+  Container _orderDate(WeekOrder _order) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            "${weekDay[_order.orderTime.weekday - 1]}",
+            style: GoogleFonts.notoSerif(
+              textStyle: dateText,
+            ),
+          ),
+          Text(
+            "${_order.orderTime.day}",
+            style: GoogleFonts.notoSerif(
+              textStyle: dayText,
+            ),
+          ),
+          Text(
+            "${_order.orderTime.hour} : ${_order.orderTime.minute}",
+            style: GoogleFonts.notoSerif(
+              textStyle: dateText,
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        // color: pinkColor,
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(width: 2, color: brownLightColor),
+      ),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      elevation: 0.0,
+      backgroundColor: beigeColor,
+      automaticallyImplyLeading: false,
+      title: Text(
+        "Detail",
+        style: GoogleFonts.notoSerif(
+          textStyle: titleText,
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            icon: Icon(
+              Icons.sync_rounded,
+              color: brownDarkColor,
+            ),
+            onPressed: () {
+              setState(() {
+                _aggregateOrders = ApiManager().getAggregateOrders();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBarHelper.aggregateOrders(),
+                );
+              });
+            },
+          ),
+        ),
+      ],
     );
   }
 }

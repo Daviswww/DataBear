@@ -55,3 +55,21 @@ const snackBarText = TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.white,
 );
+
+const orderText = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w300,
+  color: brownDarkColor,
+);
+
+const dateText = TextStyle(
+  fontSize: 13,
+  fontWeight: FontWeight.w300,
+  color: brownDarkColor,
+);
+
+const dayText = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: brownDarkColor,
+);

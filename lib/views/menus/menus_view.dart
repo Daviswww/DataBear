@@ -6,7 +6,7 @@ import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/menus/form_screen.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
 import 'package:data_bar_v2/views/widget/button_helper.dart';
-import 'package:data_bar_v2/views/widget/loadding_helper.dart';
+import 'package:data_bar_v2/views/widget/progress_helper.dart';
 import 'package:data_bar_v2/views/widget/transition_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +14,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MenusView extends StatefulWidget {
   final int selectedIndex;
-
   MenusView({
     Key key,
     @required this.selectedIndex,
@@ -39,7 +38,7 @@ class _MenusViewState extends State<MenusView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Menus>(
-      future: _menus,
+      future: Future<Menus>.delayed(Duration(seconds: 1), () => _menus),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return buildMainMenu(snapshot);

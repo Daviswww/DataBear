@@ -273,20 +273,25 @@ class FormHelper {
     );
   }
 
-  static Widget submitButtonUI(Function onPressed) {
+  static Widget submitButtonUI(
+    Function onPressed, {
+    bool isEnabled = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: MaterialButton(
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         padding: EdgeInsets.all(0),
+        disabledColor: Colors.black,
+        disabledTextColor: Colors.black,
         child: Container(
           alignment: Alignment.center,
           height: 30,
           width: 200,
           decoration: BoxDecoration(
             border: Border.all(color: brownDarkColor, width: 2),
-            color: pinkDarkColor,
+            color: isEnabled ? Colors.grey : pinkDarkColor,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Text(
@@ -297,6 +302,54 @@ class FormHelper {
         onPressed: () {
           return onPressed();
         },
+      ),
+    );
+  }
+
+  static Widget inputFidld(Function onChanged, {Function validator}) {
+    return TextFormField(
+      onChanged: (String value) {
+        return onChanged(value);
+      },
+      validator: (value) {
+        return validator(value);
+      },
+      textAlign: TextAlign.center,
+      cursorColor: Colors.black,
+      decoration: new InputDecoration(
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: pinkDarkColor,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: pinkDarkColor,
+          ),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: pinkDarkColor,
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: pinkDarkColor,
+          ),
+        ),
+        disabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: pinkDarkColor,
+          ),
+        ),
+        contentPadding:
+            EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+        hintText: "Name",
       ),
     );
   }
