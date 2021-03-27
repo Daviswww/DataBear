@@ -30,12 +30,12 @@ class SnackBarHelper {
     } else {
       return SnackBar(
         content: Text(
-          '($statusCode) $orderBy 的訂單飛到黑洞',
+          '($statusCode) $orderBy 的訂單飛到黑洞了',
           style: snackBarText,
         ),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 1),
-        backgroundColor: pinkDarkColor,
+        backgroundColor: Colors.red[300],
       );
     }
   }

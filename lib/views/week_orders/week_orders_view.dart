@@ -26,13 +26,13 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
   int selectedIndex = 1;
   Future<AggregateOrders> _aggregateOrders;
   static List<String> weekDay = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun"
+    "MON",
+    "TUE",
+    "WED",
+    "THU",
+    "FRI",
+    "SAT",
+    "SUN"
   ];
   @override
   void initState() {
@@ -69,34 +69,16 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
               itemCount: snapshot.data.payload.weekOrders.length,
               itemBuilder: (context, index) {
                 var _order = snapshot.data.payload.weekOrders[index];
-                return Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                if (index != snapshot.data.payload.weekOrders.length - 1) {
+                  return _orderBlock(_order);
+                } else {
+                  return Column(
                     children: [
-                      _orderDate(_order),
-                      _orderInfo(_order),
-                      Spacer(),
-                      Text(
-                        "\$${_order.price}",
-                        textAlign: TextAlign.center,
-                        style: itemIceTitleText,
-                      ),
+                      _orderBlock(_order),
+                      SizedBox(height: 150),
                     ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 2,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                );
+                  );
+                }
               },
             ),
             Column(
@@ -110,6 +92,37 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container _orderBlock(WeekOrder _order) {
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          _orderDate(_order),
+          _orderInfo(_order),
+          Spacer(),
+          Text(
+            "\$${_order.price}",
+            textAlign: TextAlign.center,
+            style: weekOrderPriceText,
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 2,
+            offset: Offset(2, 2),
+          ),
+        ],
       ),
     );
   }

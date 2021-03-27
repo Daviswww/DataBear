@@ -73,3 +73,9 @@ const dayText = TextStyle(
   fontWeight: FontWeight.bold,
   color: brownDarkColor,
 );
+
+const weekOrderPriceText = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: brownDarkColor,
+);

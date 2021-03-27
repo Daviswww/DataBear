@@ -52,23 +52,37 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: <Widget>[
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data.payload.aggregateOrders.length,
-              itemBuilder: (context, index) {
-                var _order = snapshot.data.payload.aggregateOrders[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _orderTitle(index, _order),
-                    _orderInfo(_order),
-                    Divider(
-                      indent: 20,
-                      endIndent: 20,
-                    ),
-                  ],
-                );
-              },
+            Container(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.payload.aggregateOrders.length,
+                itemBuilder: (context, index) {
+                  var _order = snapshot.data.payload.aggregateOrders[index];
+                  if (index !=
+                      snapshot.data.payload.aggregateOrders.length - 1) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _orderTitle(index, _order),
+                        _orderInfo(_order),
+                        Divider(
+                          indent: 20,
+                          endIndent: 20,
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _orderTitle(index, _order),
+                        _orderInfo(_order),
+                        SizedBox(height: 200),
+                      ],
+                    );
+                  }
+                },
+              ),
             ),
             Column(
               children: <Widget>[
@@ -160,7 +174,6 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
     return Container(
       padding: EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: 50,
       color: Colors.white,
       child: Row(
         children: [
