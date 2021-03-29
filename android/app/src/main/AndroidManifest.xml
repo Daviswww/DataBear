@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.data_bar_v2">
    <application
-        android:label="DataBear"
+        android:label="DataBar"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -38,4 +39,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

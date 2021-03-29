@@ -3,6 +3,7 @@ import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
+import 'package:data_bar_v2/views/widget/dialog_helper.dart';
 import 'package:data_bar_v2/views/widget/progress_helper.dart';
 import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
@@ -205,6 +206,21 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         style: GoogleFonts.notoSerif(
           textStyle: titleText,
         ),
+      ),
+      leading: IconButton(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        icon: Icon(
+          Icons.call,
+          color: brownDarkColor,
+        ),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => DialogHelper.alert(context),
+            barrierDismissible: false,
+          );
+        },
       ),
       actions: [
         Padding(

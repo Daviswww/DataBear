@@ -1,10 +1,12 @@
 import 'package:data_bar_v2/app/models/screen_arguments.dart';
 import 'package:data_bar_v2/shared/colors.dart';
 import 'package:data_bar_v2/shared/images.dart';
+import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/shared/value.dart';
 import 'package:data_bar_v2/views/widget/form_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -15,6 +17,17 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: beigeColor,
+        automaticallyImplyLeading: false,
+        title: Text(
+          "DataBar",
+          style: GoogleFonts.notoSerif(
+            textStyle: titleText,
+          ),
+        ),
+      ),
       backgroundColor: beigeColor,
       body: Stack(
         children: [

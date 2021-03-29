@@ -1,13 +1,11 @@
 import 'package:data_bar_v2/app/models/v2_aggregate_orders.dart';
 import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
-import 'package:data_bar_v2/shared/images.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/views/widget/bottom_navigattion_bar_helper.dart';
 import 'package:data_bar_v2/views/widget/progress_helper.dart';
 import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WeekOrdersView extends StatefulWidget {
@@ -105,12 +103,6 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
         children: [
           _orderDate(_order),
           _orderInfo(_order),
-          Spacer(),
-          Text(
-            "\$${_order.price}",
-            textAlign: TextAlign.center,
-            style: weekOrderPriceText,
-          ),
         ],
       ),
       decoration: BoxDecoration(
@@ -127,39 +119,52 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
     );
   }
 
-  Container _orderInfo(WeekOrder _order) {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "${_order.orderBy}",
-            style: ordersText,
-          ),
-          Row(
-            children: [
-              Text(
-                "${_order.size == "medium" ? "中杯" : "大杯"}",
-                style: orderText,
-              ),
-              Text(
-                " / ${_order.iceTag}",
-                style: orderText,
-              ),
-              Text(
-                " / ${_order.sugarTag}",
-                style: orderText,
-              ),
-            ],
-          ),
-        ],
+  Expanded _orderInfo(WeekOrder _order) {
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: <Widget>[
+                Text(
+                  "${_order.orderBy}",
+                  style: ordersText,
+                ),
+                Spacer(),
+                Text(
+                  "\$${_order.price}",
+                  textAlign: TextAlign.center,
+                  style: weekOrderPriceText,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "${_order.size == "medium" ? "中杯" : "大杯"}",
+                  style: orderText,
+                ),
+                Text(
+                  " / ${_order.iceTag}",
+                  style: orderText,
+                ),
+                Text(
+                  " / ${_order.sugarTag}",
+                  style: orderText,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Container _orderDate(WeekOrder _order) {
     return Container(
+      width: 70,
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
