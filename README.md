@@ -2,6 +2,7 @@
 A new datalab drink bot project  
 ## Demo
 <img src="assets/launcher/loading.png" width="200"/><img src="assets/launcher/login.png" width="200"/><img src="assets/launcher/menus.png" width="200"/>
+
 <img src="assets/launcher/form.png" width="200"/><img src="assets/launcher/order.png" width="200"/><img src="assets/launcher/orders.png" width="200"/>
 
 ## Api
