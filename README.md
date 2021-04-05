@@ -1,16 +1,27 @@
-# data_bar_v2
+# DataBar
+A new datalab drink bot project
+<img src="assets/launcher/form.png" width="200"/>
+## Installation
+https://chucs.github.io/flutter-001-install/
 
-A new Flutter project.
+https://flutter.dev/docs/get-started/install
 
-## Getting Started
+## Development
+https://dart.dev/
 
-This project is a starting point for a Flutter application.
+https://flutter.dev/
+## Api
+https://github.com/pin-yu/datalab-drinks-backend
 
-A few resources to get you started if this is your first Flutter project:
+## Change Log
+### 2021/4/5 v1.0.2
+- API更新
+    - 糖與冰塊是否可以調整
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### 2021/3/27 v1.0.1
+- API從v1切換至v2
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 2021/3/27 v1.0.0
+- Datalab點飲料APP
+
+

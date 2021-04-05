@@ -76,6 +76,7 @@ class _FormViewState extends State<FormView> {
                 _divider(),
                 FormHelper.iceButtonUI(
                   order.iceId,
+                  _item,
                   () {
                     setState(() {
                       order.iceId = 1;
@@ -100,6 +101,7 @@ class _FormViewState extends State<FormView> {
                 _divider(),
                 FormHelper.sugarButtonUI(
                   order.sugarId,
+                  _item,
                   () {
                     setState(() {
                       order.sugarId = 1;

@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FormHelper {
   static List<String> imageType = [coffeeIcon, teaIcon, drinkIcon];
+  static List<String> icesIcon = [burn, ice0, ice1, ice2, ice3];
 
   static Widget priductUI(BuildContext context, int menuIndex) {
     return Container(
@@ -49,13 +50,14 @@ class FormHelper {
       child: Row(
         children: <Widget>[
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "${_item.item}",
                 style: appBarTitleText,
               ),
               Text(
-                "${sizeIndex == "medium" ? _item.mediumPrice : _item.largePrice} TW",
+                "${sizeIndex == "medium" ? _item.mediumPrice == 0 ? "沒賣這個尺寸的" : _item.mediumPrice : _item.largePrice == 0 ? "沒賣這個尺寸的" : _item.largePrice} TW",
                 style: GoogleFonts.notoSerif(
                   textStyle: itemSubTitleText,
                 ),
@@ -76,6 +78,7 @@ class FormHelper {
 
   static Widget iceButtonUI(
     int iceIndex,
+    Item item,
     Function onIce0,
     Function onIce1,
     Function onIce2,
@@ -92,53 +95,73 @@ class FormHelper {
             ),
           ),
           Spacer(),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              burn,
-              width: 30,
-              color: iceIndex == 1 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.ices[0].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                burn,
+                width: 30,
+                color: iceIndex == 1 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.ices[0].enable
+                  ? () {
+                      return onIce0();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onIce0();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              ice0,
-              width: 30,
-              color: iceIndex == 2 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.ices[1].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                ice0,
+                width: 30,
+                color: iceIndex == 2 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.ices[1].enable
+                  ? () {
+                      return onIce1();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onIce1();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              ice2,
-              width: 30,
-              color: iceIndex == 3 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.ices[2].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                ice2,
+                width: 30,
+                color: iceIndex == 3 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.ices[2].enable
+                  ? () {
+                      return onIce2();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onIce2();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              ice3,
-              width: 30,
-              color: iceIndex == 4 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.ices[3].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                ice3,
+                width: 30,
+                color: iceIndex == 4 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.ices[3].enable
+                  ? () {
+                      return onIce3();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onIce3();
-            },
           ),
         ],
       ),
@@ -204,6 +227,7 @@ class FormHelper {
 
   static Widget sugarButtonUI(
     int sugarIndex,
+    Item item,
     Function onSugar0,
     Function onSugar1,
     Function onSugar2,
@@ -220,53 +244,73 @@ class FormHelper {
             ),
           ),
           Spacer(),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              sugar0,
-              width: 30,
-              color: sugarIndex == 1 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.sugars[0].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                sugar0,
+                width: 30,
+                color: sugarIndex == 1 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.sugars[0].enable
+                  ? () {
+                      return onSugar0();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onSugar0();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              sugar1,
-              width: 20,
-              color: sugarIndex == 2 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.sugars[1].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                sugar1,
+                width: 20,
+                color: sugarIndex == 2 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.sugars[1].enable
+                  ? () {
+                      return onSugar1();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onSugar1();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              sugar2,
-              width: 30,
-              color: sugarIndex == 3 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.sugars[2].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                sugar2,
+                width: 30,
+                color: sugarIndex == 3 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.sugars[2].enable
+                  ? () {
+                      return onSugar2();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onSugar2();
-            },
           ),
-          IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              sugar3,
-              width: 30,
-              color: sugarIndex == 4 ? brownDarkColor : pinkColor,
+          Opacity(
+            opacity: item.sugars[3].enable ? 1 : 0,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                sugar3,
+                width: 30,
+                color: sugarIndex == 4 ? brownDarkColor : pinkColor,
+              ),
+              onPressed: item.sugars[3].enable
+                  ? () {
+                      return onSugar3();
+                    }
+                  : null,
             ),
-            onPressed: () {
-              return onSugar3();
-            },
           ),
         ],
       ),

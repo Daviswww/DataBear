@@ -5,12 +5,14 @@ import 'package:http/http.dart' as http;
 
 class ApiManager {
   // static String domin = 'http://140.114.85.21:5000';
-  static String domin = 'http://140.114.85.21:5002';
+  // static String domin = 'http://140.114.85.21:5002';
   // static String domin = 'http://localhost:5000';
+  static String domin = 'https://shwu16.cs.nthu.edu.tw:5002';
+
   Future<Menus> getMenus() async {
     var menus;
-    final url = domin + '/v2/menus/';
-    final response = await http.get(url);
+    // final url = Uri(host: domin, port: 5002, path: '/v2/menus/');
+    final response = await http.get(domin + '/v2/menus/');
     print(response.statusCode);
     try {
       // If the server did return a 200 OK response,

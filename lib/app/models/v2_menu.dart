@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final menus = menusFromJson(jsonString);
+
 import 'dart:convert';
 
 Menus menusFromJson(String str) => Menus.fromJson(json.decode(str));
@@ -104,19 +108,23 @@ class Ice {
   Ice({
     this.iceId,
     this.iceTag,
+    this.enable,
   });
 
   int iceId;
   IceTag iceTag;
+  bool enable;
 
   factory Ice.fromJson(Map<String, dynamic> json) => Ice(
         iceId: json["ice_id"],
         iceTag: iceTagValues.map[json["ice_tag"]],
+        enable: json["enable"],
       );
 
   Map<String, dynamic> toJson() => {
         "ice_id": iceId,
         "ice_tag": iceTagValues.reverse[iceTag],
+        "enable": enable,
       };
 }
 
@@ -133,19 +141,23 @@ class Sugar {
   Sugar({
     this.sugarId,
     this.sugarTag,
+    this.enable,
   });
 
   int sugarId;
   SugarTag sugarTag;
+  bool enable;
 
   factory Sugar.fromJson(Map<String, dynamic> json) => Sugar(
         sugarId: json["sugar_id"],
         sugarTag: sugarTagValues.map[json["sugar_tag"]],
+        enable: json["enable"],
       );
 
   Map<String, dynamic> toJson() => {
         "sugar_id": sugarId,
         "sugar_tag": sugarTagValues.reverse[sugarTag],
+        "enable": enable,
       };
 }
 
