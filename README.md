@@ -1,6 +1,10 @@
 # DataBar
 A new datalab drink bot project  
-<img src="assets/launcher/loading.png" width="200"/><img src="assets/launcher/login.png" width="200"/><img src="assets/launcher/menus.png" width="200"/><img src="assets/launcher/form.png" width="200"/><img src="assets/launcher/order.png" width="200"/><img src="assets/launcher/orders.png" width="200"/>
+## Demo
+<center class="half">
+<img src="assets/launcher/loading.png" width="200"/><img src="assets/launcher/login.png" width="200"/><img src="assets/launcher/menus.png" width="200"/>
+</center>
+<img src="assets/launcher/form.png" width="200"/><img src="assets/launcher/order.png" width="200"/><img src="assets/launcher/orders.png" width="200"/>
 
 ## Api
 https://github.com/pin-yu/datalab-drinks-backend
