@@ -1,15 +1,7 @@
 # DataBar
-A new datalab drink bot project
-<img src="assets/launcher/form.png" width="200"/>
-## Installation
-https://chucs.github.io/flutter-001-install/
+A new datalab drink bot project  
+<img src="assets/launcher/loading.png" width="200"/><img src="assets/launcher/login.png" width="200"/><img src="assets/launcher/menus.png" width="200"/><img src="assets/launcher/form.png" width="200"/><img src="assets/launcher/order.png" width="200"/><img src="assets/launcher/orders.png" width="200"/>
 
-https://flutter.dev/docs/get-started/install
-
-## Development
-https://dart.dev/
-
-https://flutter.dev/
 ## Api
 https://github.com/pin-yu/datalab-drinks-backend
 
@@ -25,3 +17,7 @@ https://github.com/pin-yu/datalab-drinks-backend
 - Datalab點飲料APP
 
 
+## Development
+https://dart.dev/
+
+https://flutter.dev/
