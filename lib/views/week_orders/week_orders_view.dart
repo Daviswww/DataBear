@@ -140,6 +140,10 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
                 ),
               ],
             ),
+            Text(
+              "${_order.item}",
+              style: orderText,
+            ),
             Row(
               children: [
                 Text(
