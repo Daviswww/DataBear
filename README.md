@@ -7,6 +7,8 @@ A new datalab drink bot project
 
 
 ## Change Log
+### 2021/4/9 v1.0.3
+- 顯示飲料名稱
 ### 2021/4/5 v1.0.2
 - API更新
     - 糖與冰塊是否可以調整
