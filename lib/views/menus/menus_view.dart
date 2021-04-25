@@ -27,7 +27,7 @@ class _MenusViewState extends State<MenusView> {
   int selectedIndex = 1;
   int menuIndex = 0;
   Future<Menus> _menus;
-
+  static List<String> appBarTagIcons = [coffeeIcon, teaIcon];
   @override
   void initState() {
     _menus = ApiManager().getMenus();
@@ -143,7 +143,7 @@ class _MenusViewState extends State<MenusView> {
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
-                coffeeIcon,
+                appBarTagIcons[i],
                 color: brownDarkColor,
               ),
               onPressed: () {

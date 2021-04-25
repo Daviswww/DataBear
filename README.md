@@ -7,6 +7,10 @@ A new datalab drink bot project
 
 
 ## Change Log
+### 2021/4/25 v1.0.4
+- 菜單動態新增
+- 修好名字超出欄位問題
+
 ### 2021/4/9 v1.0.3
 - 顯示飲料名稱
 
