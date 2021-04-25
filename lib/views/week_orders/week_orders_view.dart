@@ -126,19 +126,9 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: <Widget>[
-                Text(
-                  "${_order.orderBy}",
-                  style: ordersText,
-                ),
-                Spacer(),
-                Text(
-                  "\$${_order.price}",
-                  textAlign: TextAlign.center,
-                  style: weekOrderPriceText,
-                ),
-              ],
+            Text(
+              "${_order.orderBy}",
+              style: ordersText,
             ),
             Text(
               "${_order.item}",

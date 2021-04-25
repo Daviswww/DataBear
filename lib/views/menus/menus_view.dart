@@ -38,7 +38,7 @@ class _MenusViewState extends State<MenusView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Menus>(
-      future: Future<Menus>.delayed(Duration(seconds: 1), () => _menus),
+      future: _menus,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return buildMainMenu(snapshot);
@@ -52,7 +52,7 @@ class _MenusViewState extends State<MenusView> {
   Scaffold buildMainMenu(AsyncSnapshot<Menus> snapshot) {
     return Scaffold(
       backgroundColor: beigeColor,
-      appBar: _appBar(),
+      appBar: _appBar(snapshot.data.payload.menu.length),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -114,7 +114,7 @@ class _MenusViewState extends State<MenusView> {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(int count) {
     return AppBar(
       elevation: 0.0,
       automaticallyImplyLeading: false,
@@ -128,78 +128,31 @@ class _MenusViewState extends State<MenusView> {
           ),
         ),
         Spacer(),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 3.0,
-              color: menuIndex == 0 ? Colors.white : Colors.transparent,
+        for (var i = 0; i < count; i++)
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 3.0,
+                color: menuIndex == i ? Colors.white : Colors.transparent,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
             ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          child: IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              coffeeIcon,
-              color: brownDarkColor,
-            ),
-            onPressed: () {
-              setState(() {
-                menuIndex = 0;
-              });
-            },
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 3.0,
-              color: menuIndex == 1 ? Colors.white : Colors.transparent,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              icon: SvgPicture.asset(
+                coffeeIcon,
+                color: brownDarkColor,
+              ),
+              onPressed: () {
+                setState(() {
+                  menuIndex = i;
+                });
+              },
             ),
           ),
-          child: IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              teaIcon,
-              color: brownDarkColor,
-            ),
-            onPressed: () {
-              setState(() {
-                menuIndex = 1;
-              });
-            },
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 3.0,
-              color: menuIndex == 2 ? Colors.white : Colors.transparent,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          child: IconButton(
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              drinkIcon,
-              color: brownDarkColor,
-            ),
-            onPressed: () {
-              setState(() {
-                menuIndex = 2;
-              });
-            },
-          ),
-        ),
         SizedBox(
           width: 16,
         ),

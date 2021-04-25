@@ -12,7 +12,7 @@ class RouteGenerator {
   static PageRouteBuilder<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
-    ApiManager().getAggregateOrders();
+
     switch (settings.name) {
       case '/':
         return FadeRoute(
@@ -26,9 +26,7 @@ class RouteGenerator {
       case '/aggregateorders':
         final ScreenArguments _args = args;
         return FadeRoute(
-          page: AggregateOrdersView(
-            selectedIndex: _args.selectedIndex,
-          ),
+          page: AggregateOrdersView(selectedIndex: _args.selectedIndex),
         );
       case '/weekorders':
         final ScreenArguments _args = args;

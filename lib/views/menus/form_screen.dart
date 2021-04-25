@@ -2,11 +2,14 @@ import 'package:data_bar_v2/app/models/v2_order.dart';
 import 'package:data_bar_v2/app/models/v2_menu.dart';
 import 'package:data_bar_v2/app/services/api_manager.dart';
 import 'package:data_bar_v2/shared/colors.dart';
+import 'package:data_bar_v2/shared/icons.dart';
 import 'package:data_bar_v2/shared/text_styles.dart';
 import 'package:data_bar_v2/shared/value.dart';
 import 'package:data_bar_v2/views/widget/form_helper.dart';
 import 'package:data_bar_v2/views/widget/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FormView extends StatefulWidget {
   final Item item;
@@ -26,8 +29,10 @@ class _FormViewState extends State<FormView> {
   int _menuIndex;
   int selectedIndex = 1;
   bool isShow = true;
-
   Order order;
+
+  static List<String> iceIcons = [burn, ice0, ice2, ice3];
+  static List<String> sugarIcons = [sugar0, sugar1, sugar2, sugar3];
 
   @override
   void initState() {
@@ -36,8 +41,8 @@ class _FormViewState extends State<FormView> {
     order = Order(
       orderBy: orderBy,
       itemId: _item.itemId,
-      iceId: 1,
-      sugarId: 1,
+      iceId: 4,
+      sugarId: 4,
       size: "medium",
     );
     super.initState();
@@ -74,55 +79,9 @@ class _FormViewState extends State<FormView> {
                   },
                 ),
                 _divider(),
-                FormHelper.iceButtonUI(
-                  order.iceId,
-                  _item,
-                  () {
-                    setState(() {
-                      order.iceId = 1;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.iceId = 2;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.iceId = 3;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.iceId = 4;
-                    });
-                  },
-                ),
+                iceButtons(_item),
                 _divider(),
-                FormHelper.sugarButtonUI(
-                  order.sugarId,
-                  _item,
-                  () {
-                    setState(() {
-                      order.sugarId = 1;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.sugarId = 2;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.sugarId = 3;
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.sugarId = 4;
-                    });
-                  },
-                ),
+                sugarButtons(_item),
                 _divider(),
                 Spacer(),
                 FormHelper.submitButtonUI(
@@ -141,6 +100,80 @@ class _FormViewState extends State<FormView> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Padding iceButtons(Item item) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Ice",
+            style: GoogleFonts.notoSerif(
+              textStyle: itemIceTitleText,
+            ),
+          ),
+          Spacer(),
+          for (var i = 0; i < 4; i++)
+            Opacity(
+              opacity: item.ices[i].enable ? 1 : 0,
+              child: IconButton(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                icon: SvgPicture.asset(
+                  iceIcons[i],
+                  width: 30,
+                  color: order.iceId == i + 1 ? brownDarkColor : pinkColor,
+                ),
+                onPressed: item.ices[i].enable
+                    ? () {
+                        setState(() {
+                          order.iceId = i + 1;
+                        });
+                      }
+                    : null,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Padding sugarButtons(Item item) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Sugar",
+            style: GoogleFonts.notoSerif(
+              textStyle: itemIceTitleText,
+            ),
+          ),
+          Spacer(),
+          for (var i = 0; i < 4; i++)
+            Opacity(
+              opacity: item.sugars[i].enable ? 1 : 0,
+              child: IconButton(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                icon: SvgPicture.asset(
+                  sugarIcons[i],
+                  width: i == 1 ? 20 : 30,
+                  color: order.sugarId == i + 1 ? brownDarkColor : pinkColor,
+                ),
+                onPressed: item.sugars[i].enable
+                    ? () {
+                        setState(() {
+                          order.sugarId = i + 1;
+                        });
+                      }
+                    : null,
+              ),
+            ),
+        ],
       ),
     );
   }

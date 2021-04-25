@@ -124,7 +124,7 @@ class WeekOrder {
         price: json["price"],
         sugarTag: json["sugar_tag"],
         iceTag: json["ice_tag"],
-        orderTime: DateTime.parse(json["order_time"]),
+        orderTime: DateTime.parse(json["order_time"]).toLocal(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -134,6 +134,6 @@ class WeekOrder {
         "price": price,
         "sugar_tag": sugarTag,
         "ice_tag": iceTag,
-        "order_time": orderTime.toIso8601String(),
+        "order_time": orderTime.toString(),
       };
 }
