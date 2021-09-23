@@ -7,7 +7,7 @@ class ApiManager {
   // static String domin = 'http://140.114.85.21:5000';
   // static String domin = 'http://140.114.85.21:5002';
   // static String domin = 'http://localhost:5000';
-  static String domin = 'https://shwu16.cs.nthu.edu.tw:5002';
+  static String domin = 'http://shwu16.cs.nthu.edu.tw:5002';
 
   Future<Menus> getMenus() async {
     var menus;

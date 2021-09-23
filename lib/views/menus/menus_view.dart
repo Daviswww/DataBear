@@ -43,7 +43,7 @@ class _MenusViewState extends State<MenusView> {
         if (snapshot.hasData) {
           return buildMainMenu(snapshot);
         } else {
-          return ProgressHelper.lodding();
+          return ProgressHelper.lodding(context);
         }
       },
     );

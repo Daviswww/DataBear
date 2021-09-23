@@ -47,7 +47,7 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
         if (snapshot.hasData) {
           return buildMainAggregateOrders(snapshot);
         } else {
-          return ProgressHelper.lodding();
+          return ProgressHelper.lodding(context);
         }
       },
     );

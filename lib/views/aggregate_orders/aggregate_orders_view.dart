@@ -38,7 +38,7 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         if (snapshot.hasData) {
           return buildMainAggregateOrders(snapshot);
         } else {
-          return ProgressHelper.lodding();
+          return ProgressHelper.lodding(context);
         }
       },
     );
@@ -53,38 +53,7 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: <Widget>[
-            Container(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.data.payload.aggregateOrders.length,
-                itemBuilder: (context, index) {
-                  var _order = snapshot.data.payload.aggregateOrders[index];
-                  if (index !=
-                      snapshot.data.payload.aggregateOrders.length - 1) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _orderTitle(index, _order),
-                        _orderInfo(_order),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _orderTitle(index, _order),
-                        _orderInfo(_order),
-                        SizedBox(height: 200),
-                      ],
-                    );
-                  }
-                },
-              ),
-            ),
+            _orderList(snapshot),
             Column(
               children: <Widget>[
                 Spacer(),
@@ -97,6 +66,40 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container _orderList(AsyncSnapshot<AggregateOrders> snapshot) {
+    return Container(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: snapshot.data.payload.aggregateOrders.length,
+        itemBuilder: (context, index) {
+          var _order = snapshot.data.payload.aggregateOrders[index];
+          if (index != snapshot.data.payload.aggregateOrders.length - 1) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _orderTitle(index, _order),
+                _orderInfo(_order),
+                Divider(
+                  indent: 20,
+                  endIndent: 20,
+                ),
+              ],
+            );
+          } else {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _orderTitle(index, _order),
+                _orderInfo(_order),
+                SizedBox(height: 200),
+              ],
+            );
+          }
+        },
       ),
     );
   }
