@@ -31,6 +31,7 @@ class NavigationBarHelper {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
+                      hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       splashColor: Colors.transparent,
                       icon: Icon(
@@ -48,6 +49,7 @@ class NavigationBarHelper {
                       },
                     ),
                     IconButton(
+                      hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       splashColor: Colors.transparent,
                       icon: Icon(
@@ -64,6 +66,7 @@ class NavigationBarHelper {
                       },
                     ),
                     IconButton(
+                      hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       splashColor: Colors.transparent,
                       disabledColor: Colors.white,

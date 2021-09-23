@@ -205,6 +205,7 @@ class _WeekOrdersViewState extends State<WeekOrdersView> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
+            hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             icon: Icon(

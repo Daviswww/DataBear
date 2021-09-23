@@ -140,6 +140,7 @@ class _MenusViewState extends State<MenusView> {
               ),
             ),
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(

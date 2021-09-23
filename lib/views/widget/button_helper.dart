@@ -18,6 +18,7 @@ class ButtonHelper {
     return Column(
       children: <Widget>[
         MaterialButton(
+          hoverColor: Colors.transparent,
           elevation: 0.0,
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,

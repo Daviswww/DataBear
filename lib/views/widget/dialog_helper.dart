@@ -37,6 +37,7 @@ class DialogHelper {
       actions: [
         MaterialButton(
           elevation: 0.0,
+          hoverColor: Colors.transparent,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           child: Text(

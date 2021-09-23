@@ -53,52 +53,61 @@ class _FormViewState extends State<FormView> {
     return Scaffold(
       backgroundColor: beigeColor,
       appBar: _appBar(context),
-      body: SingleChildScrollView(
-        reverse: true,
-        physics: NeverScrollableScrollPhysics(),
-        child: IntrinsicHeight(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 100,
-            child: Column(
-              children: <Widget>[
-                FormHelper.priductUI(context, _menuIndex),
-                FormHelper.priceUI(_item, order.size),
-                _divider(),
-                FormHelper.sizeButtonUI(
-                  order.size,
-                  () {
-                    setState(() {
-                      order.size = "medium";
-                    });
-                  },
-                  () {
-                    setState(() {
-                      order.size = "large";
-                    });
-                  },
-                ),
-                _divider(),
-                iceButtons(_item),
-                _divider(),
-                sugarButtons(_item),
-                _divider(),
-                Spacer(),
-                FormHelper.submitButtonUI(
-                  () {
-                    Navigator.pop(context);
-                    ApiManager().postOrder(order).then(
-                          (value) => {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBarHelper.order(value.statusCode),
-                            )
-                          },
-                        );
-                  },
-                ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _dataBarForm(context),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView _dataBarForm(BuildContext context) {
+    return SingleChildScrollView(
+      reverse: true,
+      child: IntrinsicHeight(
+        child: Column(
+          children: <Widget>[
+            FormHelper.priductUI(context, _menuIndex),
+            FormHelper.priceUI(_item, order.size),
+            _divider(),
+            FormHelper.sizeButtonUI(
+              order.size,
+              () {
+                setState(() {
+                  order.size = "medium";
+                });
+              },
+              () {
+                setState(() {
+                  order.size = "large";
+                });
+              },
+            ),
+            _divider(),
+            iceButtons(_item),
+            _divider(),
+            sugarButtons(_item),
+            _divider(),
+            Spacer(),
+            FormHelper.submitButtonUI(
+              () {
+                Navigator.pop(context);
+                ApiManager().postOrder(order).then(
+                      (value) => {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBarHelper.order(value.statusCode),
+                        )
+                      },
+                    );
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -120,6 +129,7 @@ class _FormViewState extends State<FormView> {
             Opacity(
               opacity: item.ices[i].enable ? 1 : 0,
               child: IconButton(
+                hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 icon: SvgPicture.asset(
@@ -157,6 +167,7 @@ class _FormViewState extends State<FormView> {
             Opacity(
               opacity: item.sugars[i].enable ? 1 : 0,
               child: IconButton(
+                hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 icon: SvgPicture.asset(
@@ -193,6 +204,7 @@ class _FormViewState extends State<FormView> {
       automaticallyImplyLeading: true,
       backgroundColor: beigeColor,
       leading: IconButton(
+        hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         icon: Icon(

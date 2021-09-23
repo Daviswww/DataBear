@@ -98,6 +98,7 @@ class FormHelper {
           Opacity(
             opacity: item.ices[0].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -115,6 +116,7 @@ class FormHelper {
           Opacity(
             opacity: item.ices[1].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -132,6 +134,7 @@ class FormHelper {
           Opacity(
             opacity: item.ices[2].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -149,6 +152,7 @@ class FormHelper {
           Opacity(
             opacity: item.ices[3].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -187,6 +191,7 @@ class FormHelper {
           SizedBox(
             width: 60,
             child: MaterialButton(
+              hoverColor: Colors.transparent,
               shape: CircleBorder(),
               padding: EdgeInsets.all(0),
               highlightColor: Colors.transparent,
@@ -205,6 +210,7 @@ class FormHelper {
           SizedBox(
             width: 60,
             child: MaterialButton(
+              hoverColor: Colors.transparent,
               padding: EdgeInsets.all(0),
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
@@ -247,6 +253,7 @@ class FormHelper {
           Opacity(
             opacity: item.sugars[0].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -264,6 +271,7 @@ class FormHelper {
           Opacity(
             opacity: item.sugars[1].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -281,6 +289,7 @@ class FormHelper {
           Opacity(
             opacity: item.sugars[2].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -298,6 +307,7 @@ class FormHelper {
           Opacity(
             opacity: item.sugars[3].enable ? 1 : 0,
             child: IconButton(
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               icon: SvgPicture.asset(
@@ -324,6 +334,7 @@ class FormHelper {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: MaterialButton(
+        hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         padding: EdgeInsets.all(0),

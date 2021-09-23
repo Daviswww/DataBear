@@ -145,6 +145,8 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
             width: 40,
             height: 30,
             child: IconButton(
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               padding: EdgeInsets.all(0),
@@ -162,6 +164,7 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
             width: 40,
             height: 30,
             child: IconButton(
+              hoverColor: Colors.transparent,
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               padding: EdgeInsets.all(0),
@@ -211,6 +214,7 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         ),
       ),
       leading: IconButton(
+        hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         icon: Icon(
@@ -229,6 +233,7 @@ class _AggregateOrdersViewState extends State<AggregateOrdersView> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
+            hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             icon: Icon(

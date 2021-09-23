@@ -1,18 +1,20 @@
+import 'dart:developer';
+
 import 'package:data_bar_v2/app/models/v2_order.dart';
 import 'package:data_bar_v2/app/models/v2_menu.dart';
 import 'package:data_bar_v2/app/models/v2_aggregate_orders.dart';
 import 'package:http/http.dart' as http;
 
 class ApiManager {
-  // static String domin = 'http://140.114.85.21:5000';
-  // static String domin = 'http://140.114.85.21:5002';
-  // static String domin = 'http://localhost:5000';
-  static String domin = 'http://shwu16.cs.nthu.edu.tw:5002';
+  // static String domain = 'http://140.114.85.21:5000';
+  // static String domain = 'http://140.114.85.21:5002';
+  // static String domain = 'http://localhost:5000';
+  static String domain = 'http://shwu16.cs.nthu.edu.tw:5002';
 
   Future<Menus> getMenus() async {
     var menus;
-    // final url = Uri(host: domin, port: 5002, path: '/v2/menus/');
-    final response = await http.get(domin + '/v2/menus/');
+    // final url = Uri(host: domain, port: 5002, path: '/v2/menus/');
+    final response = await http.get(domain + '/v2/menus/');
     print(response.statusCode);
     try {
       // If the server did return a 200 OK response,
@@ -20,7 +22,7 @@ class ApiManager {
         menus = menusFromJson(response.body);
       }
     } catch (Exception) {
-      print("Failed to load Menus");
+      log("Failed to load Menus");
       return menus;
     }
     return menus;
@@ -28,7 +30,7 @@ class ApiManager {
 
   Future<AggregateOrders> getAggregateOrders() async {
     var orders;
-    final url = domin + '/v2/orders/';
+    final url = domain + '/v2/orders/';
     final response = await http.get(url);
     print(response.statusCode);
     try {
@@ -40,14 +42,14 @@ class ApiManager {
         orders = aggregateOrdersFromJson(response.body);
       }
     } catch (Exception) {
-      print("Failed to load Orders");
+      log("Failed to load Orders");
       return orders;
     }
     return orders;
   }
 
   Future<http.Response> postOrder(Order order) async {
-    final url = domin + '/v2/orders/';
+    final url = domain + '/v2/orders/';
     final body = orderToJson(order);
 
     final response = await http.post(
@@ -63,7 +65,7 @@ class ApiManager {
         return response;
       }
     } catch (Exception) {
-      print("Failed to post Order");
+      log("Failed to post Order");
     }
     return response;
   }
