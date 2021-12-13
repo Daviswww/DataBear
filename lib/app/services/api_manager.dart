@@ -9,7 +9,8 @@ class ApiManager {
   // static String domain = 'http://140.114.85.21:5000';
   // static String domain = 'http://140.114.85.21:5002';
   // static String domain = 'http://localhost:5000';
-  static String domain = 'http://shwu16.cs.nthu.edu.tw:5002';
+  // static String domain = 'http://shwu16.cs.nthu.edu.tw:5002';
+  static String domain = 'http://3.37.201.24:5002';
 
   Future<Menus> getMenus() async {
     var menus;
